@@ -73,8 +73,10 @@
 
   .fio{
     font-weight: normal;
-    margin: 0 10px 7px 10px;
-    margin-bottom: 7px; 
+    margin: 0 auto;
+    width: 153px;
+    margin-bottom: 7px;
+    display: block; 
   }
 
   .edu{
