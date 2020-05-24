@@ -1,4 +1,4 @@
-import {PersonFactory} from './PersonFactory.js';
+import { PersonFactory } from './PersonFactory.js';
 
 export class School {
 
@@ -9,17 +9,6 @@ export class School {
     addPerson(personData) {
 
         const person = PersonFactory.createPerson(personData, personData.type);
-        const block = person.render();
-        const personBlock = appendPersonBlock(block);
-    
-        personBlock.addEventListener('click', (event) => {
-            openCard(event.currentTarget);
-        });
-        personBlock.querySelector('.close').addEventListener('click', (event) => {
-            event.stopPropagation();
-            personBlock.querySelector('.card-mini').classList.toggle('hidden', true);
-        });
-
         this.persons.push(person)
     }
 
@@ -31,19 +20,42 @@ export class School {
         return this.persons.find((person) => person.name === name);
     }
 
+    renderAll() {
+
+        const templateCard = document.querySelector('.template-card').content;
+        const minicard = document.querySelector('.card-mini');
+
+        this.persons.forEach(item => item.renderPerson(templateCard.cloneNode(true), minicard.cloneNode(true)));
+
+        const section = document.querySelector('.section');
+        appendPersonBlock(section, this.persons);
+    }
 }
 
-function appendPersonBlock(element) {
+function appendPersonBlock(section, persons) {
 
-    const section = document.querySelector('.section');
+    section.addEventListener('click', (event) => {
+        openCard(event.target);
+    });
 
-    section.appendChild(element);
-    return section.lastElementChild;
+    persons.forEach((item) => section.appendChild(item.domElement));
 
 }
 
-function openCard(currentTarget) {
+function openCard(target) {
 
-    document.querySelectorAll('.card-mini').forEach((el) => el.classList.toggle('hidden', true));
-    currentTarget.querySelector('.card-mini').classList.toggle('hidden', false);
+    if (target.classList.contains('close')) {
+        let elt = target.closest('.card-mini');
+        if (elt) {
+            elt.classList.toggle('hidden', true);
+        }
+        return;
+    }
+
+    let elt = target.closest('.user-info');
+    if (elt) {
+        document.querySelectorAll('.card-mini').forEach((el) => el.classList.toggle('hidden', true));
+        elt.querySelector('.card-mini').classList.toggle('hidden', false);
+    }
+
 }

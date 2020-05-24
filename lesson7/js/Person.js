@@ -29,14 +29,7 @@ export class Person {
 
     get studyInfo() { }
 
-    render() {
-
-        const templateCard = document.querySelector('.template-card').content;
-        const minicard = document.querySelector('.card-mini');
-
-
-        const element = templateCard.cloneNode(true);
-        const miniCardElement = minicard.cloneNode(true);
+    renderPerson(element, miniCardElement) {
 
         element.querySelector('.fio').innerText = this.fullName;
         element.querySelector('.edu').innerText = this.studyInfo;
@@ -48,7 +41,7 @@ export class Person {
         miniCardElement.querySelector('.card-mini-study').innerText = this.studyInfo;
         miniCardElement.querySelector('.card-mini-info-img').setAttribute("src", this.ava);
         element.querySelector('.user-info').appendChild(miniCardElement);
-        return element;
-    }
 
+        this.domElement = element;
+    }
 }

@@ -1,5 +1,9 @@
-import {PersonFactory} from './personLib.js';
 import {School} from './school.js';
+
+const TYPES = {
+    student:0,
+    teacher:1
+}
 
 const personsArr = [
     {
@@ -8,7 +12,7 @@ const personsArr = [
         course: 2,
         birthDate: new Date(2000, 0, 1),
         photoUrl: './img/ava03.jpg',
-        type: PersonFactory.TYPES.student
+        type: TYPES.student
     },
     {
         fullName: 'Иван Петров',
@@ -16,7 +20,7 @@ const personsArr = [
         course: 4,
         birthDate: new Date(1999, 1, 1),
         photoUrl: './img/ava01.jpg',
-        type: PersonFactory.TYPES.student
+        type: TYPES.student
     },
     {
         fullName: 'Джейсон Стэйтем',
@@ -24,7 +28,7 @@ const personsArr = [
         course: 1,
         birthDate: new Date(1959, 2, 1),
         photoUrl: './img/ava06.jpg',
-        type: PersonFactory.TYPES.teacher,
+        type: TYPES.teacher,
         position: 'доцент'
     },
     {
@@ -33,7 +37,7 @@ const personsArr = [
         course: 4,
         birthDate: new Date(1959, 3, 1),
         photoUrl: './img/ava04.jpg',
-        type: PersonFactory.TYPES.student
+        type: TYPES.student
     },
     {
         fullName: 'Анна Рамзанова',
@@ -41,7 +45,7 @@ const personsArr = [
         course: 3,
         birthDate: new Date(1999, 4, 1),
         photoUrl: './img/ava05.jpg',
-        type: PersonFactory.TYPES.student
+        type: TYPES.student
     },
     {
         fullName: 'Елизавета Иванченко',
@@ -49,7 +53,7 @@ const personsArr = [
         course: 4,
         birthDate: new Date(2001, 11, 1),
         photoUrl: './img/ava02.jpg',
-        type: PersonFactory.TYPES.student
+        type: TYPES.student
     }
 ];
 
@@ -62,3 +66,5 @@ personsArr.forEach((item) => {
     school.addPerson(item);
 }
 );
+
+school.renderAll()
